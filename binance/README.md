@@ -1,8 +1,7 @@
-### 임시
+## 거래소 가격 불러오기 (Binance)
 
-- 거래소별로 폴더 만들어두고 작업 진행
-
-- [CCXT 레포](https://github.com/ccxt/ccxt) 활용 + 
+### [CCXT 레포](https://github.com/ccxt/ccxt)
+1. `pip install ccxt`로 ccxt 라이브러리 설치
 
 - [파이썬 텔레그램 봇](https://github.com/python-telegram-bot/python-telegram-bot/wiki/) 활용 (텔레그램 봇 버전은 20.0a4로 통일)
 
