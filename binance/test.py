@@ -11,7 +11,7 @@ def binance_get_market():
         if pair["quote"] == "USDT" and 'UP' not in pair["base"][-2:] and 'DOWN' not in pair["base"][-4:]:
             base_quote = "{}/{}".format(pair["base"], pair["quote"])
             listed_coin.append(base_quote)
-        return listed_coin
+    return listed_coin
 
     # More frequent (every minute, or every 30 secs)
 def binance_get_ticker(listed_coin):
