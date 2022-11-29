@@ -11,7 +11,6 @@ def binance_get():
         if pair["quote"] == "USDT" and 'UP' not in pair["base"][-2:] and 'DOWN' not in pair["base"][-4:]:
             base_quote = "{}/{}".format(pair["base"], pair["quote"])
             listed_coin.append(base_quote)
-            print("{} added".format(base_quote))
 
     # More frequent (every minute, or every 30 secs)
     # start = time.perf_counter()
