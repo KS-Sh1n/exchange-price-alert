@@ -8,33 +8,27 @@ load_dotenv()
 # Spot market
 binance=ccxt.binance()
 
+# Less frequent (daily)
 listed_coin = []
-for pair in binance.fetchMarkets():
-    if pair['base'] not in listed_coin and 'UP' not in pair['base'][-2:] and 'DOWN' not in pair['base'][-4:]:
-        listed_coin.append(pair['base'])
-        print('{} added'.format(pair['base']))
+for pair in binance.fetch_markets():
+    if pair["quote"] == "USDT" and 'UP' not in pair["base"][-2:] and 'DOWN' not in pair["base"][-4:]:
+        base_quote = "{}/{}".format(pair["base"], pair["quote"])
+        listed_coin.append(base_quote)
+        print("{} added".format(base_quote))
 
-# print(binance.fetch_ticker('{}/USDT'.format(listed_coin[0])))
-
+# More frequent (every minute, or every 30 secs)
 start = time.perf_counter()
 i = 0
-binance_coins = []
-for i in range(len(listed_coin)):
-    try:
-        binance_coin = {}
-        binance_coin['symbol'] = listed_coin[i]
-        binance_coin['price'] = binance.fetch_ticker('{}/USDT'.format(listed_coin[i]))['close']
-        binance_coin['volume'] = binance.fetch_ticker('{}/USDT'.format(listed_coin[i]))['baseVolume']
-        binance_coins.append(binance_coin)
-        i = i + 1
-        print('{} completed'.format(i))
-    except:
-        i = i + 1
-        print('{} passed'.format(i))
-        continue
+binance_ticker = binance.fetch_tickers(listed_coin)
+processed_data = []
+for pair in binance_ticker.values():
+    pair_data = {}
+    pair_data["symbol"] = pair["symbol"]
+    pair_data["price"] = pair["close"]
+    pair_data["volume"] = pair["quoteVolume"]
+    processed_data.append(pair_data)
 
-print(len(binance_coins))
-print(binance_coins)
+print(processed_data)
 end = time.perf_counter()
 print(end - start)
 
