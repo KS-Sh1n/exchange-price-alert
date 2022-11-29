@@ -1,9 +1,5 @@
 import ccxt
-import telegram
-import os
 import time
-from dotenv import load_dotenv
-load_dotenv()
 
 # Spot market
 binance=ccxt.binance()
