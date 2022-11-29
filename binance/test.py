@@ -5,14 +5,16 @@ import time
 binance=ccxt.binance()
 
 # Less frequent (daily)
-def binance_get():
+def binance_get_market():
     listed_coin = []
     for pair in binance.fetch_markets():
         if pair["quote"] == "USDT" and 'UP' not in pair["base"][-2:] and 'DOWN' not in pair["base"][-4:]:
             base_quote = "{}/{}".format(pair["base"], pair["quote"])
             listed_coin.append(base_quote)
+        return listed_coin
 
     # More frequent (every minute, or every 30 secs)
+def binance_get_ticker(listed_coin):
     # start = time.perf_counter()
     binance_ticker = binance.fetch_tickers(listed_coin)
     processed_data = []
