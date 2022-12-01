@@ -3,7 +3,7 @@
 ### [CCXT 레포](https://github.com/ccxt/ccxt)
 1. `pip install ccxt`로 ccxt 라이브러리 설치
 
-- [파이썬 텔레그램 봇](https://github.com/python-telegram-bot/python-telegram-bot/wiki/) 활용 (텔레그램 봇 버전은 20.0a4로 통일)
+- [파이썬 텔레그램 봇](https://github.com/python-telegram-bot/python-telegram-bot/wiki/) 활용 (`pip install python-telegram-bot==20.0a6`)
 
 - 깃헙을 통해 코드와 진행사항 공유 (Pull request 활용)
 
